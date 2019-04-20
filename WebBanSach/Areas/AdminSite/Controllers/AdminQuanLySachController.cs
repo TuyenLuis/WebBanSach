@@ -17,26 +17,26 @@ namespace WebBanSach.Areas.AdminSite.Controllers
         [HasCredential(Quyen = 1)]
         public ActionResult TatCaSach()
         {
-                var TatCaSach = db.Saches.Join(db.Nhaxuatbans, sach => sach.Manxb, nxb => nxb.Manxb, (sach, nxb) => sach)
-                                          .Join(db.Chudes, sach => sach.Macd, chude => chude.Macd, (sach, chude) => sach)
-                                          .Join(db.Tacgias, sach => sach.Matacgia, tacgia => tacgia.Matacgia, (sach, tacgia) => sach)
-                                          .OrderByDescending(sach => sach.Masach)
-                                          .ToList();
-                //List<Sach> TatCaSach = db.Saches.ToList();
-                //ViewBag.TatCaSach = TatCaSach;
-                return View(TatCaSach);
+            var TatCaSach = db.Saches.Join(db.Nhaxuatbans, sach => sach.Manxb, nxb => nxb.Manxb, (sach, nxb) => sach)
+                                      .Join(db.Chudes, sach => sach.Macd, chude => chude.Macd, (sach, chude) => sach)
+                                      .Join(db.Tacgias, sach => sach.Matacgia, tacgia => tacgia.Matacgia, (sach, tacgia) => sach)
+                                      .OrderByDescending(sach => sach.Masach)
+                                      .ToList();
+            //List<Sach> TatCaSach = db.Saches.ToList();
+            //ViewBag.TatCaSach = TatCaSach;
+            return View(TatCaSach);
         }
         [HasCredential(Quyen = 1)]
         public ActionResult ThemSach()
         {
 
-                var TatCaChuDe = db.Chudes.ToList();
-                var TatCaTacGia = db.Tacgias.ToList();
-                var TatCaNXB = db.Nhaxuatbans.ToList();
-                ViewBag.TatCaChuDe = TatCaChuDe;
-                ViewBag.TatCaTacGia = TatCaTacGia;
-                ViewBag.TatCaNXB = TatCaNXB;
-                return View();
+            var TatCaChuDe = db.Chudes.ToList();
+            var TatCaTacGia = db.Tacgias.ToList();
+            var TatCaNXB = db.Nhaxuatbans.ToList();
+            ViewBag.TatCaChuDe = TatCaChuDe;
+            ViewBag.TatCaTacGia = TatCaTacGia;
+            ViewBag.TatCaNXB = TatCaNXB;
+            return View();
         }
         [HttpPost]
         [HasCredential(Quyen = 1)]
@@ -60,7 +60,8 @@ namespace WebBanSach.Areas.AdminSite.Controllers
                 db.Saches.Add(sach);
                 db.SaveChanges();
                 return RedirectToAction("TatCaSach");
-            } else
+            }
+            else
             {
                 ViewBag.TatCaChuDe = db.Chudes.ToList(); ;
                 ViewBag.TatCaTacGia = db.Tacgias.ToList();
@@ -68,7 +69,7 @@ namespace WebBanSach.Areas.AdminSite.Controllers
                 return View(sach);
             }
 
-            
+
         }
         [HasCredential(Quyen = 1)]
         public ActionResult SuaSach(int MaSach)
@@ -106,7 +107,7 @@ namespace WebBanSach.Areas.AdminSite.Controllers
                 Hinhminhhoa.SaveAs(DuongDan);
             }
             sach.Donvitinh = "VNĐ";
-            sach.Ngaycapnhat = DateTime.Now; 
+            sach.Ngaycapnhat = DateTime.Now;
             var sachcu = db.Saches.Find(sach.Masach);
             db.Entry(sachcu).CurrentValues.SetValues(sach);
             db.SaveChanges();
