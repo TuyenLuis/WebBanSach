@@ -48,7 +48,7 @@ namespace WebBanSach.Areas.AdminSite.Controllers
                 if (Hinhminhhoa != null && Hinhminhhoa.ContentLength > 0)
                 {
                     var TenAnh = Path.GetFileName(Hinhminhhoa.FileName);
-                    var DuongDan = Path.Combine(Server.MapPath("~/Assets/images/"), TenAnh);
+                    var DuongDan = Path.Combine(Server.MapPath("~/Assets/images/books/"), TenAnh);
                     sach.Hinhminhhoa = TenAnh;
                     Hinhminhhoa.SaveAs(DuongDan);
                 }
@@ -98,10 +98,11 @@ namespace WebBanSach.Areas.AdminSite.Controllers
         public ActionResult SuaSach(Sach sach, HttpPostedFileBase Hinhminhhoa)
         {
 
+            var a = sach;
             if (Hinhminhhoa != null && Hinhminhhoa.ContentLength > 0)
             {
                 var TenAnh = Path.GetFileName(Hinhminhhoa.FileName);
-                var DuongDan = Path.Combine(Server.MapPath("~/Assets/images/"), TenAnh);
+                var DuongDan = Path.Combine(Server.MapPath("~/Assets/images/books/"), TenAnh);
                 sach.Hinhminhhoa = TenAnh;
                 Hinhminhhoa.SaveAs(DuongDan);
             }
