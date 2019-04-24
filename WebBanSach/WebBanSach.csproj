@@ -167,6 +167,7 @@
     <Compile Include="Models\EF\Chude.cs" />
     <Compile Include="Models\EF\Giohangkh.cs" />
     <Compile Include="Models\EF\Khachhang.cs" />
+    <Compile Include="Models\EF\LienHe.cs" />
     <Compile Include="Models\EF\Nhaxuatban.cs" />
     <Compile Include="Models\EF\QuanLyBanSachDbContext.cs" />
     <Compile Include="Models\EF\Sach.cs" />

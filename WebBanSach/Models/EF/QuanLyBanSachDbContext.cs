@@ -13,6 +13,7 @@ namespace WebBanSach.Models.EF
         }
 
         public virtual DbSet<Chinhanh> Chinhanhs { get; set; }
+        public virtual DbSet<LienHe> LienHes { get; set; }
         public virtual DbSet<ChiTietGioHang> ChiTietGioHangs { get; set; }
         public virtual DbSet<Chude> Chudes { get; set; }
         public virtual DbSet<Giohangkh> Giohangkhs { get; set; }
