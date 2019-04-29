@@ -13,7 +13,7 @@ namespace WebBanSach.Controllers
         QuanLyBanSachDbContext db = new QuanLyBanSachDbContext();
         private const string CartSession = "CART_SESSION";
         // GET: ChiTietSach
-        public ActionResult Index(int ID = 1020)
+        public ActionResult Index(int ID)
         {
             var sach = db.Saches.SingleOrDefault(item => item.Masach == ID);
             if (sach == null)

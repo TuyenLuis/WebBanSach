@@ -91,7 +91,7 @@
                             var @giacu = item.Dongia != null ? item.Dongia.ToString() + "đ" : "";
                             var @giamoi = item.Giakm != null ? item.Giakm.ToString() + "đ" : "";
                             <div class="grid1_of_3">
-                                <a href="/ChiTietSach/Index?ID=item.Masach">
+                                <a href="/ChiTietSach/Index?ID=@item.Masach">
                                     <img src="~/Assets/images/@item.Hinhminhhoa" alt="" style="width: 170px; height: 250px;" />
                                     <h3 style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="@item.Tensach">@item.Tensach</h3>
                                     <div class="price">
