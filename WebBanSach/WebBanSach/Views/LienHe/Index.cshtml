@@ -1,0 +1,52 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Liên hệ";
+}
+
+<!-- start main -->
+<div class="main_bg">
+    <div class="wrap">
+        <div class="main">
+            <div class="contact">
+                <div class="contact_info">
+                    <h2>Địa chỉ liên lạc</h2>
+                    <div class="map">
+                        <iframe width="100%" height="250" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+                                src="https://maps.google.co.in/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Lighthouse+Point,+FL,+United+States&amp;aq=4&amp;oq=light&amp;sll=26.275636,-80.087265&amp;sspn=0.04941,0.104628&amp;ie=UTF8&amp;hq=&amp;hnear=Lighthouse+Point,+Broward,+Florida,+United+States&amp;t=m&amp;z=14&amp;ll=26.275636,-80.087265&amp;output=embed"></iframe><br><small>
+                            <a href="https://maps.google.co.in/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=Lighthouse+Point,+FL,+United+States&amp;aq=4&amp;oq=light&amp;sll=26.275636,-80.087265&amp;sspn=0.04941,0.104628&amp;ie=UTF8&amp;hq=&amp;hnear=Lighthouse+Point,+Broward,+Florida,+United+States&amp;t=m&amp;z=14&amp;ll=26.275636,-80.087265"
+                            style="color:#777777;text-align:left;font-size:13px;font-family: 'Source Sans Pro', sans-serif;">
+                            View Larger Map
+                            </a>
+                        </small>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h2>Liên hệ với chúng tôi</h2>
+                    <form method="post" action="contact-post.html" class="form">
+                        <div class="form-group">
+                            <span><label>Họ và tên</label></span>
+                            <span><input name="userName" type="text" class="form-control"></span>
+                        </div>
+                        <div class="form-group">
+                            <span><label>E-mail</label></span>
+                            <span><input name="userEmail" type="text" class="form-control"></span>
+                        </div>
+                        <div class="form-group">
+                            <span><label>Số điện thoại</label></span>
+                            <span><input name="userPhone" type="text" class="form-control"></span>
+                        </div>
+                        <div class="form-group">
+                            <span><label>Nội dung</label></span>
+                            <span><textarea name="userMsg" class="form-control"> </textarea></span>
+                        </div>
+                        <div class="form-group">
+                            <span><button type="submit" class="btn btn-success" style="width: 100px;">Gửi</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+</div>
