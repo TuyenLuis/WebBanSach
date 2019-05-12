@@ -264,6 +264,12 @@
                         }
                     }
                 })
+                $.ajax({
+                    url: '/ChiTietSach/TotalPrice',
+                    success: function (response) {
+                        $(".total-price").html(response);
+                    }
+                })
             })
         </script>
     }

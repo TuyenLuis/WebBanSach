@@ -57,5 +57,19 @@ namespace WebBanSach.Controllers
             Session[CartSession] = listItem;
             return Json(new { status = true });
         }
+
+        public ActionResult TotalPrice()
+        {
+            var lstItemInCart = Session["CART_SESSION"] as List<CartItem>;
+            int tongtien = 0;
+            if (lstItemInCart != null)
+            {
+                foreach (var item in lstItemInCart)
+                {
+                    tongtien += (int)item.Product.Dongia * (int)item.Quantity;
+                }
+            }
+            return Json(tongtien, JsonRequestBehavior.AllowGet);
+        }
     }
 }
