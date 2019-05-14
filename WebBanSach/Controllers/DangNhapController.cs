@@ -78,8 +78,8 @@ namespace WebBanSach.Controllers
             var fb = new FacebookClient();
             var loginUrl = fb.GetLoginUrl(new
             {
-                client_id = "530116780853982",
-                client_secret = "380cfe5f0ab22004ce2ff07d3c6c5017",
+                client_id = "2399813093365009",
+                client_secret = "3cdc9343fb6b5baba1f9aa45b1716ef3",
                 redirect_uri = RedirectUri.AbsoluteUri,
                 response_type = "code",
                 scope = "email" // Add other permissions as needed
@@ -93,8 +93,8 @@ namespace WebBanSach.Controllers
             var fb = new FacebookClient();
             dynamic result = fb.Post("oauth/access_token", new
             {
-                client_id = "530116780853982",
-                client_secret = "380cfe5f0ab22004ce2ff07d3c6c5017",
+                client_id = "2399813093365009",
+                client_secret = "3cdc9343fb6b5baba1f9aa45b1716ef3",
                 redirect_uri = RedirectUri.AbsoluteUri,
                 code = code
             });

@@ -17,11 +17,7 @@ namespace WebBanSach.Areas.AdminSite.Controllers
         [HasCredential(Quyen = 1)]
         public ActionResult TatCaSach()
         {
-            var TatCaSach = db.Saches.Join(db.Nhaxuatbans, sach => sach.Manxb, nxb => nxb.Manxb, (sach, nxb) => sach)
-                                      .Join(db.Chudes, sach => sach.Macd, chude => chude.Macd, (sach, chude) => sach)
-                                      .Join(db.Tacgias, sach => sach.Matacgia, tacgia => tacgia.Matacgia, (sach, tacgia) => sach)
-                                      .OrderByDescending(sach => sach.Masach)
-                                      .ToList();
+            var TatCaSach = db.Saches.ToList();
             //List<Sach> TatCaSach = db.Saches.ToList();
             //ViewBag.TatCaSach = TatCaSach;
             return View(TatCaSach);
@@ -48,7 +44,7 @@ namespace WebBanSach.Areas.AdminSite.Controllers
                 if (Hinhminhhoa != null && Hinhminhhoa.ContentLength > 0)
                 {
                     var TenAnh = Path.GetFileName(Hinhminhhoa.FileName);
-                    var DuongDan = Path.Combine(Server.MapPath("~/Assets/images/books/"), TenAnh);
+                    var DuongDan = Path.Combine(Server.MapPath("~/Assets/images/"), TenAnh);
                     sach.Hinhminhhoa = TenAnh;
                     Hinhminhhoa.SaveAs(DuongDan);
                 }
@@ -102,7 +98,7 @@ namespace WebBanSach.Areas.AdminSite.Controllers
             if (Hinhminhhoa != null && Hinhminhhoa.ContentLength > 0)
             {
                 var TenAnh = Path.GetFileName(Hinhminhhoa.FileName);
-                var DuongDan = Path.Combine(Server.MapPath("~/Assets/images/books/"), TenAnh);
+                var DuongDan = Path.Combine(Server.MapPath("~/Assets/images/"), TenAnh);
                 sach.Hinhminhhoa = TenAnh;
                 Hinhminhhoa.SaveAs(DuongDan);
             }
