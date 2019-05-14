@@ -5,12 +5,14 @@ using System.Web;
 using System.Web.Mvc;
 using WebBanSach.Models.Common;
 using WebBanSach.Models.EF;
+using WebBanSach.Models.Security;
 
 namespace WebBanSach.Areas.AdminSite.Controllers
 {
     public class AdminDangNhapController : Controller
     {
-        QuanLyBanSachDbContext db = new QuanLyBanSachDbContext();
+        private QuanLyBanSachDbContext db = new QuanLyBanSachDbContext();
+        private SecurityPassWord sp = new SecurityPassWord();
         // GET: AdminSite/AdminDangNhap
         public ActionResult Index(string returnUrl)
         {
@@ -22,7 +24,8 @@ namespace WebBanSach.Areas.AdminSite.Controllers
         {
             if (ModelState.IsValid)
             {
-                Khachhang khachang = db.Khachhangs.SingleOrDefault(kh => kh.Tendn == user.Username && kh.Matkhau == user.Password);
+                string pass_hash = sp.HashPass(user.Password);
+                Khachhang khachang = db.Khachhangs.SingleOrDefault(kh => kh.Tendn == user.Username && kh.Matkhau == pass_hash);
                 if (khachang != null && khachang.Quyen == 1)
                 {
                     Session.Add("ADMIN_SESSION", khachang);
