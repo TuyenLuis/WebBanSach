@@ -73,38 +73,36 @@
                     }
                 </tbody>
                 <tfoot>
-                <td colspan="3">
-                    <div>
-                        <button type="button" class="btn btn-danger deselect" onclick="onClickRemoveItemSelected()">Xóa chọn</button>
-                    </div>
-                </td>
-                @{
-                    decimal tongTien = 0;
-                    decimal tietKiem = 0;
-                    int tongSoLuong = 0;
+                    <td colspan="3">
+                        <div>
+                            <button type="button" class="btn btn-danger deselect" onclick="onClickRemoveItemSelected()">Xóa chọn</button>
+                        </div>
+                    </td>
+                    @{
+                        decimal tongTien = 0;
+                        decimal tietKiem = 0;
+                        int tongSoLuong = 0;
 
-                    foreach (CartItem item in Model)
-                    {
-                        var donGia = item.Product.Giakm != null ? item.Product.Giakm : item.Product.Dongia;
-                        var tienTietKiem = item.Product.Giakm != null ? item.Product.Dongia - item.Product.Giakm : 0;
-                        tongTien += (decimal)donGia * item.Quantity;
-                        tietKiem += (decimal)tienTietKiem * item.Quantity;
-                        tongSoLuong += item.Quantity;
+                        foreach (CartItem item in Model)
+                        {
+                            var donGia = item.Product.Giakm != null ? item.Product.Giakm : item.Product.Dongia;
+                            var tienTietKiem = item.Product.Giakm != null ? item.Product.Dongia - item.Product.Giakm : 0;
+                            tongTien += (decimal)donGia * item.Quantity;
+                            tietKiem += (decimal)tienTietKiem * item.Quantity;
+                            tongSoLuong += item.Quantity;
+                        }
                     }
-
                     <td>
                         <div class="footer-price">
                             <span class="total-price">Tổng tiền: @(tongTien.ToString() + " đ")</span>
-                            <span class="total-saving">Tiết kiệm @(tietKiem.ToString() + " đ")</span>
+                            <span class="total-saving">Tiết kiệm: @(tietKiem.ToString() + " đ")</span>
                         </div>
                     </td>
-                }
-
-                <td>
-                    <div>
-                        <button type="button" onclick="location.href='http://localhost:25676/LienHe/Index'" class="btn btn-success" style="font-size: 14px;"><i class="fa fa-shopping-cart"></i>Thanh toán</button>
-                    </div>
-                </td>
+                    <td>
+                        <div>
+                            <button type="button" onclick="location.href='http://localhost:25676/LienHe/Index'" class="btn btn-success" style="font-size: 14px;"><i class="fa fa-shopping-cart"></i>Thanh toán</button>
+                        </div>
+                    </td>
                 </tfoot>
             </table>
         </div>

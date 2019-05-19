@@ -10,12 +10,13 @@ namespace WebBanSach.Controllers
     public class HomeController : Controller
     {
         QuanLyBanSachDbContext db = new QuanLyBanSachDbContext();
-        public ActionResult Index()
+        public ActionResult Index(int page = 1)
         {
             List<Sach> lstSachMoi = db.Saches.Where(item => item.Ngaycapnhat == new DateTime(2019, 04, 02)).ToList();
             List<Sach> lstSachNoiBat = db.Saches.ToList();
 
             ViewBag.ListSachMoi = lstSachMoi;
+            ViewBag.currentPage = page;
             return View(lstSachNoiBat);
         }
 

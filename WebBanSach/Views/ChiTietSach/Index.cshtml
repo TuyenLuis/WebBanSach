@@ -98,7 +98,7 @@
                                         <div class="form-group">
                                             <div class="btn-group">
                                                 <button id="btnMinus" type="button" class="btn" style="background-color: #4CCFC1; color: #fff;" onclick="onChangeQuantity('btnMinus')"><i class="fa fa-minus"></i></button>
-                                                <input id="quantityValue" type="text" class="form-control" value="1" style="width: 65px; border-radius: unset; text-align: center;">
+                                                <input id="quantityValue" type="text" class="form-control" value="1" style="width: 65px; border-radius: unset; text-align: center;" disabled>
                                                 <button id="btnPlus" type="button" class="btn" style="background-color: #4CCFC1; color: #fff;" onclick="onChangeQuantity('btnPlus')"><i class="fa fa-plus"></i></button>
                                             </div>
                                         </div>
@@ -267,7 +267,7 @@
                 $.ajax({
                     url: '/ChiTietSach/TotalPrice',
                     success: function (response) {
-                        $(".total-price").html(response);
+                        $("#total-price").html(response + "đ");
                     }
                 })
             })
