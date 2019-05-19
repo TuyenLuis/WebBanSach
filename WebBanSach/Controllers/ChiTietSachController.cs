@@ -61,12 +61,12 @@ namespace WebBanSach.Controllers
         public ActionResult TotalPrice()
         {
             var lstItemInCart = Session["CART_SESSION"] as List<CartItem>;
-            int tongtien = 0;
+            decimal tongtien = 0;
             if (lstItemInCart != null)
             {
                 foreach (var item in lstItemInCart)
                 {
-                    tongtien += (int)item.Product.Dongia * (int)item.Quantity;
+                    tongtien += item.Product.Giakm != null ? (decimal)item.Product.Giakm * item.Quantity : (decimal)item.Product.Dongia * item.Quantity;
                 }
             }
             return Json(tongtien, JsonRequestBehavior.AllowGet);

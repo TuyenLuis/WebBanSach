@@ -5,6 +5,12 @@
 }
 @using WebBanSach.Models.EF
 @model IEnumerable<Sach>
+@{ 
+    const int itemInRow = 3;
+    const int pageSize = 6;
+    int pageNumber = Model.Count() / 6 + 1;
+    int currentPage = ViewBag.currentPage;
+}
 
 <!-- start slider -->
 <div id="carouselIndicators" class="carousel slide">
@@ -77,17 +83,17 @@
         <div class="main">
             <!-- start grids_of_3 -->
             @{
-                int rowNumber = Model.Count() / 3 + 1;
-                for (int i = 0; i < rowNumber; i++)
+                int rowNumber = (currentPage * pageSize) / itemInRow;
+                for (int i = rowNumber - 2; i < rowNumber; i++)
                 {
                     <div class="grids_of_3">
-                        @for(int j = 0; j < 3; j++)
+                        @for (int j = 0; j < itemInRow; j++)
                         {
-                            if (3 * i + j >= Model.Count())
+                            if (itemInRow * i + j >= Model.Count())
                             {
                                 break;
                             }
-                            var @item = Model.ToList()[3 * i + j];
+                            var @item = Model.ToList()[itemInRow * i + j];
                             var @giacu = item.Dongia != null ? item.Dongia.ToString() + "đ" : "";
                             var @giamoi = item.Giakm != null ? item.Giakm.ToString() + "đ" : "";
                             <div class="grid1_of_3">
@@ -119,9 +125,47 @@
                 }
             }
             <!-- end grids_of_3 -->
+            <ul class="pagination justify-content-end pagination-custom">
+                @{
+                    int pagePrev = currentPage == 1 ? 1 : currentPage - 1;
+                    int pageNext = currentPage == pageNumber ? pageNumber : currentPage + 1;
+
+                    <li class="page-item"><a href="/Home/Index/?page=@pagePrev" class="page-link previous-page">Previous</a></li>
+                    for (int i = 1; i <= pageNumber; i++)
+                    {
+                        <li class="page-item"><a href="/Home/Index/?page=@i" class="page-link page-number">@i</a></li>
+                    }
+                    <li class="page-item"><a href="/Home/Index/?page=@pageNext" class="page-link next-page">Next</a></li>
+                }
+                <style>
+                    .pagination-custom {
+                        margin-right: 35px;
+                    }
+
+                    a.previous-page, a.next-page, a.page-number {
+                        color: #1d9d74;
+                    }
+
+                    .page-item.active .page-number{
+                        background-color: #1d9d74;
+                        color: #fff;
+                    }
+                </style>
+            </ul>
         </div>
     </div>
     <script>
+        let currentPage = @currentPage
+        const activePageNumber = () => {
+            $('.page-number').each(function () {
+                $(this).parent().removeClass('active')
+                if ($(this).text() == currentPage) {
+                    $(this).parent().addClass('active')
+                }
+            })
+        }
+        activePageNumber()
+
         var $myCarousel = $('#carouselIndicators')
         $myCarousel.carousel()
 
