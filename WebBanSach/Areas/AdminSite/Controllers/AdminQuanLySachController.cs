@@ -127,9 +127,10 @@ namespace WebBanSach.Areas.AdminSite.Controllers
             }
 
         }
-        public ActionResult TimKiem(string TenSach)
+        public ActionResult TimKiem(int giaTruoc, int giaSau)
         {
-            List<Sach> lstSach = db.Saches.Where(x => x.Tensach.Contains(TenSach)).ToList();
+            // List<Sach> lstSach = db.Saches.Where(x => x.Tensach.Contains(search)).ToList();
+            List<Sach> lstSach = db.Saches.Where(x => (x.Dongia >= giaTruoc && x.Dongia <= giaSau)).ToList();
             return View("TatCaSach", lstSach);
         }
     }
