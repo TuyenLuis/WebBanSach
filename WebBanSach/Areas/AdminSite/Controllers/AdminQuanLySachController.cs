@@ -15,12 +15,15 @@ namespace WebBanSach.Areas.AdminSite.Controllers
         QuanLyBanSachDbContext db = new QuanLyBanSachDbContext();
         // GET: AdminSite/AdminQuanLySach
         [HasCredential(Quyen = 1)]
-        public ActionResult TatCaSach()
+        public ActionResult TatCaSach(int? page)
         {
+            if (page == null) page = 1;
             var TatCaSach = db.Saches.ToList();
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
             //List<Sach> TatCaSach = db.Saches.ToList();
             //ViewBag.TatCaSach = TatCaSach;
-            return View(TatCaSach);
+            return View(TatCaSach.ToPagedList(pageNumber, pageSize));
         }
         [HasCredential(Quyen = 1)]
         public ActionResult ThemSach()
@@ -127,10 +130,15 @@ namespace WebBanSach.Areas.AdminSite.Controllers
             }
 
         }
-        public ActionResult TimKiem(string TenSach)
+        [HasCredential(Quyen = 1)]
+        public ActionResult TimKiem(string TenSach, int? page)
         {
+            ViewBag.CurrentFilter = TenSach;
+            if (page == null) page = 1;
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
             List<Sach> lstSach = db.Saches.Where(x => x.Tensach.Contains(TenSach)).ToList();
-            return View("TatCaSach", lstSach);
+            return View(lstSach.ToPagedList(pageNumber, pageSize));
         }
     }
 }

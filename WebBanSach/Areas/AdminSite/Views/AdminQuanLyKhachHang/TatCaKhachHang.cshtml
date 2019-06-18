@@ -4,7 +4,8 @@
     Layout = "~/Areas/AdminSite/Views/Shared/AdminLayout.cshtml";
 }
 @using WebBanSach.Models.EF
-@model IEnumerable<Khachhang>
+@*@model IEnumerable<Khachhang>*@
+@model PagedList.IPagedList<Khachhang>
 @using PagedList.Mvc;
 <div class="container">
     <div class="row">
@@ -61,16 +62,15 @@
                                 }
                             </tbody>
                         </table>
-                        @*<nav aria-label="Page navigation example">
-                            @Html.PagedListPager(
-                                                 Model,
-                                                 page => Url.Action("TatCaKhachHang", new { page, @class = "pagination" }),
-                                                 new PagedListRenderOptions()
-                                                 {
-                                                     LiElementClasses = new string[] { "page-item" },
-                                                     
-                                                 })
-                        </nav>*@
+                        <br />
+                        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+
+                        @Html.PagedListPager(Model, page => Url.Action("TatCaKhachHang", new { page }),
+                                new PagedListRenderOptions()
+                                {
+                                    LiElementClasses = new List<string> { "page-item" },
+                                    UlElementClasses = new List<string> { "pagination" }
+                                })
                     </div>
 
                 </div>
@@ -104,3 +104,9 @@
 <script>
     $(".pagination .page-item a").addClass("page-link");
 </script>
+<style>
+    .pagination .active {
+        color: white;
+        background: #007bff;
+    }
+</style>
