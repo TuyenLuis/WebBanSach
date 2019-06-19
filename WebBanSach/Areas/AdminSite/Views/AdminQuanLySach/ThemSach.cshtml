@@ -13,11 +13,11 @@
                     <h3>Thêm sách</h3>
                 </div>
                 <div class="card-body card-block">
-                    <form action="@Url.Action("ThemSach", "AdminQuanLySach")" onsubmit="return validateForm()" method="post" enctype="multipart/form-data" class="form-horizontal" id="FormAdd" >
+                    <form action="@Url.Action("ThemSach", "AdminQuanLySach")" method="post" enctype="multipart/form-data" class="form-horizontal" id="FormAdd" >
                         @Html.ValidationSummary(true)
                         <div class="row form-group">
                             <div class="col col-md-3"><label for="text-input" class=" form-control-label">Tên sách(*)</label></div>
-                            <div class="col-12 col-md-7"><input type="text" name="Tensach" id="Tensach" placeholder="Tên sách" class="form-control"></div>
+                            <div class="col-12 col-md-7"><input type="text" name="Tensach" id="Tensach" required placeholder="Tên sách" class="form-control"></div>
                             <div class="col-md-2 error">@Html.ValidationMessageFor(m => m.Tensach,"",new { @class = "text-danger" })</div>
                         </div>
                         <div class="row form-group">
@@ -30,6 +30,11 @@
                                     }
                                 </select>
                             </div>
+                            <div class="col-md-1">
+                                <a class="btn btn-success" data-toggle="modal" data-target="#modalThemTG">
+                                    <i class="fa fa-plus" aria-hidden="true" style="color:#ffffff"></i>
+                                </a>
+                            </div>
                         </div>
                         <div class="row form-group">
                             <div class="col col-md-3"><label for="selectLg" class=" form-control-label">Chủ đề sách(*)</label></div>
@@ -40,6 +45,11 @@
                                         <option value="@chude.Macd">@chude.Tenchude</option>
                                      }
                                 </select>
+                            </div>
+                            <div class="col-md-1">
+                                <a class="btn btn-success" data-toggle="modal" data-target="#modalThemCD">
+                                    <i class="fa fa-plus" aria-hidden="true" style="color:#ffffff"></i>
+                                </a>
                             </div>
                         </div>
                         <div class="row form-group">
@@ -53,10 +63,15 @@
                                     }
                                 </select>
                             </div>
+                            <div class="col-md-1">
+                                <a class="btn btn-success" data-toggle="modal" data-target="#modalThemNXB">
+                                    <i class="fa fa-plus" aria-hidden="true" style="color:#ffffff"></i>
+                                </a>
+                            </div>
                         </div>
                         <div class="row form-group">
                             <div class="col col-md-3"><label for="text-input" class=" form-control-label">Giá(*)</label></div>
-                            <div class="col-12 col-md-4"><input type="number" id="Dongia" name="Dongia" min="0" placeholder="nhập giá" class="form-control"></div>
+                            <div class="col-12 col-md-4"><input type="number" required id="Dongia" name="Dongia" min="0" placeholder="nhập giá" class="form-control"></div>
                             <div class="col-md-1">VNĐ</div>
                             <div class="col-md-2 error">@Html.ValidationMessageFor(m => m.Dongia, "", new { @class = "text-danger" })</div>
                         </div>
@@ -66,8 +81,8 @@
                             <div class="col-md-3">VNĐ</div>
                         </div>
                         <div class="row form-group">
-                            <div class="col col-md-3"><label for="text-input" class=" form-control-label">Số lượng(*)</label></div>
-                            <div class="col-12 col-md-4"><input type="number" id="Soluong" name="Soluong" placeholder="nhập số lượng" min="0"  class="form-control"></div>
+                            <div class="col col-md-3"><label for="text-input"  class=" form-control-label">Số lượng(*)</label></div>
+                            <div class="col-12 col-md-4"><input type="number" required id="Soluong" name="Soluong" placeholder="nhập số lượng" min="0"  class="form-control"></div>
                             <div class="col-md-1">quyển</div>
                             <div class="col-md-4 error">@Html.ValidationMessageFor(m => m.Soluong, "", new { @class = "text-danger" })</div>
                         </div>
@@ -104,16 +119,92 @@
     </div>
 </div>
 
+@*modal thêm tác giả*@
+
+<div class="modal fade" id="modalThemTG" role="dialog">
+    <div class="modal-dialog">
+        <form class="form-horizontal" action="@Url.Action("ThemTacGia", "AdminQuanLySach")">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Thêm tác giả</h3>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                </div>
+                <div class="modal-body">
+                    <input type="text" placeholder="nhập tên tác giả" required name="tenTG" class="form-control" id="ThemTG" />
+                </div>
+                <input type="text" hidden id="idSach" />
+                <div class="modal-footer">
+                    <button class="btn btn-success" type="submit" id="btnDelete">Thêm</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" type="reset">Hủy</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+@*modal thêm chủ đề *@
+
+<div class="modal fade" id="modalThemCD" role="dialog">
+    <div class="modal-dialog">
+        <form class="form-horizontal" action="@Url.Action("ThemChuDe", "AdminQuanLySach")">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Thêm chủ đề</h3>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                </div>
+                <div class="modal-body">
+                    <input type="text" placeholder="nhập chủ đề" required name="TenChuDe" class="form-control" id="TenChuDe" />
+                </div>
+                <input type="text" hidden id="idSach" />
+                <div class="modal-footer">
+                    <button class="btn btn-success" type="submit" id="btnDelete">Thêm</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" type="reset">Hủy</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+@*modal thêm nhà xuất bản*@
+
+<div class="modal fade" id="modalThemNXB" role="dialog">
+    <div class="modal-dialog">
+        <form class="form-horizontal" action="@Url.Action("ThemNXB", "AdminQuanLySach")">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Thêm nhà xuất bản</h3>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                </div>
+                <div class="modal-body">
+                    <input type="text" placeholder="nhập tên nhà xuất bản" required name="TenNXB" class="form-control" id="TenNXB" />
+                </div>
+                <input type="text" hidden id="idSach" />
+                <div class="modal-footer">
+                    <button class="btn btn-success" type="submit" id="btnDelete">Thêm</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" type="reset">Hủy</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+
 <script>
     //lấy ảnh từ máy hiển thị lên web
     const onFileSelected = (event) => {
-        var selectedFile = event.target.files[0];
-        var reader = new FileReader();
+        const selectedFile = event.target.files[0];
+        const reader = new FileReader();
 
-        var imgtag = document.getElementById("displayImg");
+        const imgtag = document.getElementById("displayImg");
         imgtag.title = selectedFile.name;
 
-        reader.onload = function (event) {
+        reader.onload =  (event) => {
             imgtag.src = event.target.result;
         };
         reader.readAsDataURL(selectedFile);
@@ -123,18 +214,18 @@
         document.getElementById('displayImg').src = 'http://placehold.it/400x400';
     }
     // validate dữ liệu trước khi submit
-    const validateForm = () => {
-        if (document.getElementById('Tensach').value == "") {
-            alert("Bạn phải nhập tên sách");
-            return false;
-        }
-        if (document.getElementById('Dongia').value == "") {
-            alert("Phải nhập giá sách");
-            return false;
-        }
-        if (document.getElementById('Soluong').value == "") {
-            alert("Bạn phải nhập số lượng");
-            return false;
-        }
-    }
+    //const validateForm = () => {
+    //    if (document.getElementById('Tensach').value == "") {
+    //        alert("Bạn phải nhập tên sách");
+    //        return false;
+    //    }
+    //    if (document.getElementById('Dongia').value == "") {
+    //        alert("Phải nhập giá sách");
+    //        return false;
+    //    }
+    //    if (document.getElementById('Soluong').value == "") {
+    //        alert("Bạn phải nhập số lượng");
+    //        return false;
+    //    }
+    //}
 </script>

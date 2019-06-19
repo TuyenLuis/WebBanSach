@@ -20,7 +20,7 @@
                         </div>
                         <div class="row form-group">
                             <div class="col col-md-3"><label for="text-input" class=" form-control-label">Tên sách(*)</label></div>
-                            <div class="col-12 col-md-7"><input type="text" name="Tensach" id="Tensach" placeholder="Tên sách" value="@Model.Tensach" class="form-control"></div>
+                            <div class="col-12 col-md-7"><input type="text" required name="Tensach" id="Tensach" placeholder="Tên sách" value="@Model.Tensach" class="form-control"></div>
                             <div class="col-md-2 error">@Html.ValidationMessageFor(m => m.Tensach, "", new { @class = "text-danger" })</div>
                         </div>
                         <div class="row form-group">
@@ -82,7 +82,7 @@
                         </div>
                         <div class="row form-group">
                             <div class="col col-md-3"><label for="text-input" class=" form-control-label">Giá(*)</label></div>
-                            <div class="col-12 col-md-4"><input type="number" id="Dongia" name="Dongia" min="0" placeholder="nhập giá" class="form-control" value="@Model.Dongia"></div>
+                            <div class="col-12 col-md-4"><input type="number" required id="Dongia" name="Dongia" min="0" placeholder="nhập giá" class="form-control" value="@Model.Dongia"></div>
                             <div class="col-md-1">VNĐ</div>
                             <div class="col-md-2 error">@Html.ValidationMessageFor(m => m.Dongia, "", new { @class = "text-danger" })</div>
                         </div>
@@ -93,7 +93,7 @@
                         </div>
                         <div class="row form-group">
                             <div class="col col-md-3"><label for="text-input" class=" form-control-label">Số lượng(*)</label></div>
-                            <div class="col-12 col-md-4"><input type="number" id="Soluong" name="Soluong" value="@Model.Soluong" placeholder="nhập số lượng" min="0" class="form-control"></div>
+                            <div class="col-12 col-md-4"><input type="number" required id="Soluong" name="Soluong" value="@Model.Soluong" placeholder="nhập số lượng" min="0" class="form-control"></div>
                             <div class="col-md-1">quyển</div>
                             <div class="col-md-4 error">@Html.ValidationMessageFor(m => m.Soluong, "", new { @class = "text-danger" })</div>
                         </div>
@@ -145,20 +145,20 @@
         reader.readAsDataURL(selectedFile);
     }
     // validate dữ liệu trước khi submit
-    const validateForm = () => {
-        if (document.getElementById('Tensach').value == "") {
-            alert("Bạn phải nhập tên sách");
-            return false;
-        }
-        if (document.getElementById('Dongia').value == "") {
-            alert("Phải nhập giá sách");
-            return false;
-        }
-        if (document.getElementById('Soluong').value == "") {
-            alert("Bạn phải nhập số lượng");
-            return false;
-        }
-    }
+    //const validateForm = () => {
+    //    if (document.getElementById('Tensach').value == "") {
+    //        alert("Bạn phải nhập tên sách");
+    //        return false;
+    //    }
+    //    if (document.getElementById('Dongia').value == "") {
+    //        alert("Phải nhập giá sách");
+    //        return false;
+    //    }
+    //    if (document.getElementById('Soluong').value == "") {
+    //        alert("Bạn phải nhập số lượng");
+    //        return false;
+    //    }
+    //}
 </script>
 
 

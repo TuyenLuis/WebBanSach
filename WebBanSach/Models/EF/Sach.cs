@@ -19,8 +19,9 @@ namespace WebBanSach.Models.EF
         public int Masach { get; set; }
 
         [StringLength(200)]
+        [Required]
         public string Tensach { get; set; }
-
+        [Required]
         public decimal? Dongia { get; set; }
 
         [StringLength(10)]
@@ -40,7 +41,7 @@ namespace WebBanSach.Models.EF
         public DateTime? Ngaycapnhat { get; set; }
 
         public int? Matacgia { get; set; }
-
+        [Required]
         public int? Soluong { get; set; }
 
         public decimal? Giakm { get; set; }

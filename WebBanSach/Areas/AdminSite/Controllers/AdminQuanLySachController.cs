@@ -153,5 +153,30 @@ namespace WebBanSach.Areas.AdminSite.Controllers
                 return Json(new { status = false });
             }
         }
+        public ActionResult ThemTacGia(string tenTG)
+        {
+            Tacgia tg = new Tacgia();
+            tg.Tentacgia = tenTG;
+            db.Tacgias.Add(tg);
+            db.SaveChanges();
+            return RedirectToAction("ThemSach");
+        }
+
+        public ActionResult ThemChuDe(string TenChuDe)
+        {
+            Chude cd = new Chude();
+            cd.Tenchude = TenChuDe;
+            db.Chudes.Add(cd);
+            db.SaveChanges();
+            return RedirectToAction("ThemSach");
+        }
+        public ActionResult ThemNXB(string TenNXB)
+        {
+            Nhaxuatban nxb = new Nhaxuatban();
+            nxb.Tennxb = TenNXB;
+            db.Nhaxuatbans.Add(nxb);
+            db.SaveChanges();
+            return RedirectToAction("ThemSach");
+        }
     }
 }
