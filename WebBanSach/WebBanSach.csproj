@@ -171,6 +171,7 @@
     </Compile>
     <Compile Include="Models\Common\CartItem.cs" />
     <Compile Include="Models\Common\HasCredentialAttribute.cs" />
+    <Compile Include="Models\Common\ThongKe.cs" />
     <Compile Include="Models\Common\UserLogin.cs" />
     <Compile Include="Models\EF\Chinhanh.cs" />
     <Compile Include="Models\EF\ChiTietGioHang.cs" />
@@ -209,6 +210,7 @@
     <Content Include="Areas\AdminSite\images\avatar\6.jpg" />
     <Content Include="Areas\AdminSite\images\Capture.PNG" />
     <Content Include="Areas\AdminSite\images\logo.png" />
+    <Content Include="Areas\AdminSite\images\logo123.png" />
     <Content Include="Areas\AdminSite\images\logo2.png" />
     <Content Include="Areas\AdminSite\images\placeholder.png" />
     <Content Include="Areas\AdminSite\images\twitter_corner_black.png" />

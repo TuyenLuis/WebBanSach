@@ -140,5 +140,18 @@ namespace WebBanSach.Areas.AdminSite.Controllers
             List<Sach> lstSach = db.Saches.Where(x => x.Tensach.Contains(TenSach)).ToList();
             return View(lstSach.ToPagedList(pageNumber, pageSize));
         }
+        [HasCredential(Quyen = 1)]
+        public JsonResult ThongKe()
+        {
+            try
+            {
+                var ThongKe = db.Giohangkhs.SqlQuery("SELECT MONTH(Ngaymua) AS Month, sum(Tongtien) as TongTien from Giohangkh group by MONTH(Ngaymua)").ToList();
+                return Json(new { data = ThongKe, status = true });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { status = false });
+            }
+        }
     }
 }
