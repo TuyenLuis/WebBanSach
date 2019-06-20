@@ -141,18 +141,6 @@ namespace WebBanSach.Areas.AdminSite.Controllers
             return View(lstSach.ToPagedList(pageNumber, pageSize));
         }
         [HasCredential(Quyen = 1)]
-        public JsonResult ThongKe()
-        {
-            try
-            {
-                var ThongKe = db.Giohangkhs.SqlQuery("SELECT MONTH(Ngaymua) AS Month, sum(Tongtien) as TongTien from Giohangkh group by MONTH(Ngaymua)").ToList();
-                return Json(new { data = ThongKe, status = true });
-            }
-            catch (Exception ex)
-            {
-                return Json(new { status = false });
-            }
-        }
         public ActionResult ThemTacGia(string tenTG)
         {
             Tacgia tg = new Tacgia();
@@ -161,7 +149,7 @@ namespace WebBanSach.Areas.AdminSite.Controllers
             db.SaveChanges();
             return RedirectToAction("ThemSach");
         }
-
+        [HasCredential(Quyen = 1)]
         public ActionResult ThemChuDe(string TenChuDe)
         {
             Chude cd = new Chude();
@@ -170,6 +158,7 @@ namespace WebBanSach.Areas.AdminSite.Controllers
             db.SaveChanges();
             return RedirectToAction("ThemSach");
         }
+        [HasCredential(Quyen = 1)]
         public ActionResult ThemNXB(string TenNXB)
         {
             Nhaxuatban nxb = new Nhaxuatban();

@@ -156,6 +156,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\AdminSite\AdminSiteAreaRegistration.cs" />
     <Compile Include="Areas\AdminSite\Controllers\AdminDangNhapController.cs" />
+    <Compile Include="Areas\AdminSite\Controllers\AdminQuanLyDonHangController.cs" />
     <Compile Include="Areas\AdminSite\Controllers\AdminQuanLyKhachHangController.cs" />
     <Compile Include="Areas\AdminSite\Controllers\AdminQuanLySachController.cs" />
     <Compile Include="Areas\AdminSite\Controllers\AdminTrangChuController.cs" />
@@ -3511,6 +3512,7 @@
     <Content Include="Areas\AdminSite\Views\AdminQuanLySach\SuaSach.cshtml" />
     <Content Include="Areas\AdminSite\Views\AdminTrangChu\Index.cshtml" />
     <Content Include="Areas\AdminSite\Views\AdminQuanLySach\TimKiem.cshtml" />
+    <Content Include="Areas\AdminSite\Views\AdminQuanLyDonHang\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

@@ -35,7 +35,6 @@ namespace WebBanSach.Areas.AdminSite.Controllers
             return RedirectToAction("Index");
 
         }
-        [HttpPost]
         public ActionResult Logout()
         {
             Session.Remove("ADMIN_SESSION");
