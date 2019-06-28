@@ -130,12 +130,12 @@
                     int pagePrev = currentPage == 1 ? 1 : currentPage - 1;
                     int pageNext = currentPage == pageNumber ? pageNumber : currentPage + 1;
 
-                    <li class="page-item"><a href="/Home/Index/?page=@pagePrev" class="page-link previous-page">Previous</a></li>
+                    <li class="page-item"><a href=@(Request.Url.PathAndQuery.Contains("TimKiem") ? Request.Url.PathAndQuery + "&page=" + @pagePrev : "/Home/Index/?page=" + @pagePrev) class="page-link previous-page">Previous</a></li>
                     for (int i = 1; i <= pageNumber; i++)
                     {
-                        <li class="page-item"><a href="/Home/Index/?page=@i" class="page-link page-number">@i</a></li>
+                        <li class="page-item"><a href=@(Request.Url.PathAndQuery.Contains("TimKiem") ? Request.Url.PathAndQuery + "&page=" + @i : "/Home/Index/?page=" + @i) class="page-link page-number">@i</a></li>
                     }
-                    <li class="page-item"><a href="/Home/Index/?page=@pageNext" class="page-link next-page">Next</a></li>
+                    <li class="page-item"><a href=@(Request.Url.PathAndQuery.Contains("TimKiem") ? Request.Url.PathAndQuery + "&page=" + @pageNext : "/Home/Index/?page=" + @pageNext) class="page-link next-page">Next</a></li>
                 }
                 <style>
                     .pagination-custom {

@@ -60,7 +60,7 @@
                     </li>
 
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Quản đơn hàng</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Quản lí đơn hàng</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="fa fa-list"></i><a href="@Url.Action("Index","AdminQuanLyDonHang")">Danh sách đơn hàng</a></li>
                         </ul>
@@ -78,7 +78,7 @@
 
             <div class="header-menu">
 
-                <div class="col-sm-9">
+                <div class="col-sm-8">
                     <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa fa-tasks"></i></a>
                     <div class="header-left">
 
@@ -91,7 +91,7 @@
                     var @kh = Session["ADMIN_SESSION"] as Khachhang;
 
                 
-                <div class="col-sm-2">
+                <div class="col-sm-3">
                     @*<div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img class="user-avatar rounded-circle" src="~/Content/Admin/images/admin.jpg" alt="User Avatar">
@@ -103,9 +103,9 @@
                         </div>
                     </div>*@
 
-                    xin chào : @kh.Hotenkh
+                    <h5>xin chào : @kh.Hotenkh</h5>
                 </div>
-                <div class="col-sm-1"><a href="@Url.Action("Logout","AdminDangNhap")"><i class="fa fa-power-off"></i></a></div>
+                <div class="col-sm-1"><a href="@Url.Action("Logout","AdminDangNhap")" class="btn btn-danger rounded-circle btn-sm"><i class="fa fa-power-off"></i></a></div>
                 }
             </div>
 

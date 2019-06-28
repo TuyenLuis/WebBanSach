@@ -120,6 +120,8 @@ namespace WebBanSach.Areas.AdminSite.Controllers
             try
             {
                 Sach sach = db.Saches.Find(MaSach);
+                var ct = db.ChiTietGioHangs.Where(x => x.Sach.Masach == sach.Masach);
+                db.ChiTietGioHangs.RemoveRange(ct);
                 db.Saches.Remove(sach);
                 db.SaveChanges();
                 return Json(new { status = true });
