@@ -7,6 +7,7 @@
 @using WebBanSach.Models.EF
 @model IEnumerable<Sach>
 
+
 <!-- start main -->
 <div class="main_bg">
     <div class="wrap">
@@ -31,7 +32,7 @@
                             <div class="portfolio @item.Chude.Key" style="height: 490px;" data-cat="@item.Chude.Key">
                                 <div class="portfolio-wrapper" title="@item.Tensach">
                                     <a href="/ChiTietSach/Index?ID=@item.Masach">
-                                        <img src="~/Assets/images/books/@item.Hinhminhhoa"style="width: 240px; height: 360px;" alt="Image 2" />
+                                        <img src="~/Assets/images/books/@item.Hinhminhhoa" style="width: 240px; height: 360px;" alt="Image 2" />
                                     </a>
                                     <div class="price" style="text-align: center;">
                                         <h3 style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-height: 27px;">@item.Tensach</h3>
@@ -53,6 +54,23 @@
                                 </div>
                             </div>
                         }
+                        <ul class="pagination justify-content-end pagination-custom">
+                           
+                            <style>
+                                .pagination-custom {
+                                    margin-right: 35px;
+                                }
+
+                                a.previous-page, a.next-page, a.page-number {
+                                    color: #1d9d74;
+                                }
+
+                                .page-item.active .page-number {
+                                    background-color: #1d9d74;
+                                    color: #fff;
+                                }
+                            </style>
+                        </ul>
                     </div>
                 </div><!-- container -->
                 <script type="text/javascript" src="~/Assets/js/fliplightbox.min.js"></script>

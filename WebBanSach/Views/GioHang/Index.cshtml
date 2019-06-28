@@ -23,7 +23,7 @@
                         <th>
                             <form action="#" class="form">
                                 <div class="checkbox">
-                                    <input type="checkbox" id="checkboxAll"/>
+                                    <input type="checkbox" id="checkboxAll" />
                                 </div>
                             </form>
                         </th>
@@ -39,7 +39,7 @@
                             <td>
                                 <form action="#" class="form">
                                     <div class="checkbox">
-                                        <input type="checkbox" class="checkboxItem" id="item-@item.Product.Masach" onclick="onClickSelectItem('item-@item.Product.Masach')"/>
+                                        <input type="checkbox" class="checkboxItem" id="item-@item.Product.Masach" onclick="onClickSelectItem('item-@item.Product.Masach')" />
                                     </div>
                                 </form>
                             </td>
@@ -73,42 +73,42 @@
                     }
                 </tbody>
                 <tfoot>
-                    <td colspan="3">
-                        <div>
-                            <button type="button" class="btn btn-danger deselect" onclick="onClickRemoveItemSelected()">Xóa chọn</button>
-                        </div>
-                    </td>
-                    @{
-                        decimal tongTien = 0;
-                        decimal tietKiem = 0;
-                        int tongSoLuong = 0;
+                <td colspan="3">
+                    <div>
+                        <button type="button" class="btn btn-danger deselect" onclick="onClickRemoveItemSelected()">Xóa chọn</button>
+                    </div>
+                </td>
+                @{
+                    decimal tongTien = 0;
+                    decimal tietKiem = 0;
+                    int tongSoLuong = 0;
 
-                        foreach (CartItem item in Model)
-                        {
-                            var donGia = item.Product.Giakm != null ? item.Product.Giakm : item.Product.Dongia;
-                            var tienTietKiem = item.Product.Giakm != null ? item.Product.Dongia - item.Product.Giakm : 0;
-                            tongTien += (decimal)donGia * item.Quantity;
-                            tietKiem += (decimal)tienTietKiem * item.Quantity;
-                            tongSoLuong += item.Quantity;
-                        }
+                    foreach (CartItem item in Model)
+                    {
+                        var donGia = item.Product.Giakm != null ? item.Product.Giakm : item.Product.Dongia;
+                        var tienTietKiem = item.Product.Giakm != null ? item.Product.Dongia - item.Product.Giakm : 0;
+                        tongTien += (decimal)donGia * item.Quantity;
+                        tietKiem += (decimal)tienTietKiem * item.Quantity;
+                        tongSoLuong += item.Quantity;
                     }
-                    <td>
-                        <div class="footer-price">
-                            <span class="total-price">Tổng tiền: @(tongTien.ToString() + " đ")</span>
-                            <span class="total-saving">Tiết kiệm: @(tietKiem.ToString() + " đ")</span>
-                        </div>
-                    </td>
-                    <td>
-                        <div>
-                            <button type="button" onclick="location.href='http://localhost:25676/LienHe/Index'" class="btn btn-success" style="font-size: 14px;"><i class="fa fa-shopping-cart"></i>Thanh toán</button>
-                        </div>
-                    </td>
+                }
+                <td>
+                    <div class="footer-price">
+                        <span class="total-price">Tổng tiền: @(tongTien.ToString() + " đ")</span>
+                        <span class="total-saving">Tiết kiệm: @(tietKiem.ToString() + " đ")</span>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <button type="button" data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-success" style="font-size: 14px;"><i class="fa fa-shopping-cart"></i>Thanh toán</button>
+                    </div>
+                </td>
                 </tfoot>
             </table>
         </div>
         <div class="col-md-3 right-container">
             <div class="cart-info">
-                @{ 
+                @{
                     <div class="info">
                         <span class="text-bold" style="font-size: 17px;">@tongSoLuong sản phẩm</span>
                         <span class="text-bold" style="color: #f15c22">@(tongTien.ToString() + " đ")</span>
@@ -123,6 +123,52 @@
             </div>
             <div class="more-product">
                 @{ Html.RenderAction("SachLienQuan", "DanhMuc"); }
+            </div>
+        </div>
+
+
+        <!--Phần Model hiển thị-->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <!--Dòng trên "id" phải trùng với tên của "data-target" của button Thanh toán-->
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Thanh toán</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div id="xu-ly-thanh-toan" style="display:none">
+                        Thanh toán đang được xử lý
+                    </div>
+                    <div id="thanh-toan-thanh-cong" style="display:none">
+                        Thanh toán thành công, trang sẽ tự điều hướng trong 2 giây
+                    </div>
+                    <div class="modal-body" id="thanh-toan">
+                        <form>
+                            <div class="form-group">
+                                <label for="modal-name" class="col-form-label">Họ và tên:</label>
+                                <input type="text" class="form-control" id="modal-name">
+                            </div>
+                            <div class="form-group">
+                                <label for="modal-email" class="col-form-label">Mail:</label>
+                                <input type="text" class="form-control" id="modal-email">
+                            </div>
+                            <div class="form-group">
+                                <label for="modal-phone" class="col-form-label">Số điện thoại:</label>
+                                <input type="text" class="form-control" id="modal-phone">
+                            </div>
+                            <div class="form-group">
+                                <label for="modal-address" class="col-form-label">Địa chỉ:</label>
+                                <input type="text" class="form-control" id="modal-address">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" onclick="Purchase()" id="btn-thanh-toan">Thanh toán</button><!--Hàm Purchase() ở dưới cùng, chạy khi nhấn button thanh toán ở modal-->
+                    </div>
+                </div>
             </div>
         </div>
     }
@@ -193,5 +239,41 @@
                 }
             }
         })
+    }
+
+    const Purchase = () => {
+        var _name = $('#modal-name').val();
+        var _phone = $('#modal-phone').val();
+        var _email = $('#modal-email').val();
+        var _address = $('#modal-address').val();
+        //sử dụng jQuery để lấy giá trị, sau dấu "#" là id
+        if (_email !== "") {
+            $("#xu-ly-thanh-toan").css({ "display": "block" });
+            $("#thanh-toan").css({ "display": "none" });
+            $("#btn-thanh-toan").css({ "display": "none" });
+            $.ajax({
+                url: '/GioHang/ThanhToan',
+                //sử dụng ajax để gọi tới GioHangController và Action là ThanhToan
+                method: 'POST',
+                data: { name: _name, phone: _phone, email: _email, address: _address },
+                //data phải giống tên với các giá trị truyền vào ở /GioHang/ThanhToan
+                dataType: 'text',
+                success: function (response) {
+                    response = JSON.parse(response)
+                    if (response.status == true) {
+                        $("#xu-ly-thanh-toan").css({ "display": "none" });
+                        $("#thanh-toan-thanh-cong").css({ "display": "block" });
+                        setTimeout(function () {
+                            $(location).attr("href", '/Home/Index')
+                        }, 2000);
+                    } else {
+                        $("#btn-thanh-toan").css({ "display": "block" });
+                        alert('Thanh toán thất bại!')
+                    }
+                }
+            })
+        } else {
+            alert('Mail không được để trống!')
+        }
     }
 </script>

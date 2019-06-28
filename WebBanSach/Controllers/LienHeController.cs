@@ -28,8 +28,8 @@ namespace WebBanSach.Controllers
             var user = Session["USER_SESSION"] as Khachhang;
             decimal tongtien = 0;
             #region Phần gửi mail
-            string mailFrom = "thienthansiwon@gmail.com";
-            string passMail = "hathikimbien31081998";//Tối điền
+            string mailFrom = "nhom8congngheweb@gmail.com";
+            string passMail = "nhom8congngheweb1234";
             NetworkCredential basicCredential = new NetworkCredential(mailFrom, passMail);
             SmtpClient client = new SmtpClient("smtp.gmail.com", 25);
             MailMessage mail = new MailMessage();
@@ -41,8 +41,8 @@ namespace WebBanSach.Controllers
             {
                 mail.From = new MailAddress(mailFrom);
                 mail.CC.Add(new MailAddress(email.ToLower()));
-                mail.Subject = "Xác nhận thanh toán";
-                string body = "Qúy khách đã mua những sách sau <br>";
+                mail.Subject = "Thanks for your suggestions! We review and contact back soon";
+                string body = "Bạn đã mua những sách sau <br>";
                 if (lstItemInCart != null)
                 {
                     //add to database
