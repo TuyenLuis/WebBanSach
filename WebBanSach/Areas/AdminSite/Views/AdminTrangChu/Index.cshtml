@@ -20,6 +20,10 @@
              dataType: 'json',
              success: (response) => {
                  console.log(response)
+                 let DuLieu = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                 for (let i = 0; i < 13; i++) {
+                     DuLieu[i] = response[i + 1];
+                 }
                      const ctx = document.getElementById('myChart').getContext('2d');
                      const chart = new Chart(ctx, {
                          // The type of chart we want to create
@@ -32,7 +36,7 @@
                                  label: 'Danh thu theo tháng',
                                  backgroundColor: '#1d6fc0',
                                  borderColor: '#1d6fc0',
-                                 data: response
+                                 data: DuLieu
                              }]
                          },
 
